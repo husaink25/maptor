@@ -3,14 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maptor - Smart Navigator</title>
+    <title>🧭 Maptor - Smart Navigator</title>
     <link href="style.css" rel="stylesheet" />
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
    
   </head>
   <body>
+    <!-- Floating Particles Animation -->
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
     <!-- Map -->
     <div id="map"></div>
 
@@ -19,15 +33,15 @@
       <h2>🧭 Maptor Navigation</h2>
 
       <div class="input-group">
-        <label>From:</label>
+        <label>📍 From:</label>
         <input id="fromInput" type="text" placeholder="Enter start location" />
       </div>
       <div class="input-group">
-        <label>To:</label>
+        <label>🎯 To:</label>
         <input id="toInput" type="text" placeholder="Enter destination" />
       </div>
 
-      <button onclick="calculateRoute()" class="nav-btn">Start Navigation</button>
+      <button onclick="calculateRoute()" class="btn nav-btn">🚀 Start Navigation</button>
 
       <hr />
 
@@ -37,11 +51,13 @@
           <option value="traffic">🚗 Traffic Jam</option>
           <option value="accident">💥 Accident</option>
           <option value="roadblock">🚧 Roadblock</option>
+          <option value="construction">🏗️ Construction</option>
+          <option value="weather">🌧️ Weather Hazard</option>
         </select>
 
         <input type="file" id="imageInput" accept="image/*" />
 
-        <button type="submit" class="report-btn">Report</button>
+        <button type="submit" class="btn report-btn">📤 Report Incident</button>
       </form>
     </div>
 
@@ -51,13 +67,13 @@
     <!-- Chat Modal -->
     <div id="chatModal" class="chat-modal hidden">
       <div class="chat-header">
-        <span>Location Chat</span>
+        <span>📍 Location Chat</span>
         <button onclick="toggleChat()">✖️</button>
       </div>
       <div id="chatMessages" class="chat-messages"></div>
       <form id="chatForm" class="chat-form">
         <input type="text" id="chatInput" placeholder="Type a message..." required />
-        <button type="submit">Send</button>
+        <button type="submit">📤</button>
       </form>
     </div>
 
