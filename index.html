@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maptor - Smart Navigator</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
+   
+  </head>
+  <body>
+    <!-- Map -->
+    <div id="map"></div>
+
+    <!-- Navigation & Report Section -->
+    <div class="container">
+      <h2>🧭 Maptor Navigation</h2>
+
+      <div class="input-group">
+        <label>From:</label>
+        <input id="fromInput" type="text" placeholder="Enter start location" />
+      </div>
+      <div class="input-group">
+        <label>To:</label>
+        <input id="toInput" type="text" placeholder="Enter destination" />
+      </div>
+
+      <button onclick="calculateRoute()" class="nav-btn">Start Navigation</button>
+
+      <hr />
+
+      <h3>🚨 Report an Incident</h3>
+      <form id="incidentForm">
+        <select id="type">
+          <option value="traffic">🚗 Traffic Jam</option>
+          <option value="accident">💥 Accident</option>
+          <option value="roadblock">🚧 Roadblock</option>
+        </select>
+
+        <input type="file" id="imageInput" accept="image/*" />
+
+        <button type="submit" class="report-btn">Report</button>
+      </form>
+    </div>
+
+    <!-- Floating Chat Button -->
+    <button class="chat-btn" onclick="toggleChat()">💬</button>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="chat-modal hidden">
+      <div class="chat-header">
+        <span>Location Chat</span>
+        <button onclick="toggleChat()">✖️</button>
+      </div>
+      <div id="chatMessages" class="chat-messages"></div>
+      <form id="chatForm" class="chat-form">
+        <input type="text" id="chatInput" placeholder="Type a message..." required />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWpe_xGF60aE0g4Yd1iZikPxgbxHyZOS0&libraries=places&callback=initMap" async defer></script>
+  </body>
+</html>
