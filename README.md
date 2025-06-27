@@ -99,7 +99,77 @@ Moodify/
 5. Enjoy! 🎧
 
 ---
+## 🛠️ Setup & Deployment
 
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/moodify.git
+cd moodify
+```
+
+---
+
+### 2. Build & Deploy Backend with Cloud Build + Cloud Run
+
+Inside the backend folder:
+
+```bash
+cd backend
+gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/moodify-backend
+gcloud run deploy moodify-backend \
+  --image gcr.io/YOUR_PROJECT_ID/moodify-backend \
+  --platform managed \
+  --region asia-south1 \
+  --allow-unauthenticated \
+  --set-env-vars GCP_PROJECT=YOUR_PROJECT_ID,PUBSUB_TOPIC=moodify-topic
+```
+
+---
+
+### 3. Create a Pub/Sub Topic
+
+```bash
+gcloud pubsub topics create moodify-topic
+```
+
+---
+
+### 4. Deploy Cloud Function
+
+Inside the function folder:
+
+```bash
+cd ../function
+gcloud functions deploy handle_playlist_request \
+  --runtime python310 \
+  --trigger-topic moodify-topic \
+  --entry-point handle_request \
+  --region asia-south1 \
+  --set-env-vars BUCKET_NAME=YOUR_BUCKET_NAME
+```
+
+---
+
+### 5. Create Cloud Storage Bucket
+
+```bash
+gsutil mb -l asia-south1 gs://YOUR_BUCKET_NAME
+```
+
+---
+
+### 6. Deploy Frontend (GitHub Pages)
+
+1. Go to the frontend folder
+2. Push to your GitHub repository
+3. On GitHub:
+   - Go to Settings → Pages
+   - Source: main branch, root folder (/)
+4. Your site will be live at:  
+   https://yourusername.github.io/moodify/
+
+---
 ## 📁 Folder Structure
 
 ```
